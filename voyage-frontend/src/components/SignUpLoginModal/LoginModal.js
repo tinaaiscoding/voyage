@@ -1,26 +1,49 @@
-import React from 'react'
+import { useState } from 'react';
+import SignUpModal from './SignUpModal';
 
-import Modal from '../UI/Modal'
+import Modal from '../UI/Modal';
 
-const LogInModal = () => {
-  return (
-    <Modal className='modal' id='Login-Modal'>
-      <nav>
-        <ul>
-          <li>SIGN UP</li>
-          <li>LOGIN</li>
-        </ul>
-      </nav>
+const LogInModal = (props) => {
+  const closeLoginModalHandler = () => {
+    props.onModalClose();
+  };
 
-      <form>
-        <label>EMAIL:</label>
-        <input type="text" />
+  const [displaySignUpModal, setDisplaySignUpModal] = useState(false);
 
-        <label>PASSWORD:</label>
-        <input type="password" />
-      </form>
-    </Modal>
-  )
-}
+  const renderSignUpModalHandler = () => {
+    setDisplaySignUpModal(true);
+  };
 
-export default LogInModal
+  const closeSignUpModalHandler = () => {
+    setDisplaySignUpModal(false);
+    props.onModalClose();
+  };
+
+  if (displaySignUpModal) {
+    return <SignUpModal onModalClose={closeSignUpModalHandler} />;
+  } else {
+    return (
+      <Modal className="modal" id="Login-Modal">
+        <span onClick={closeLoginModalHandler}>CLOSE</span>
+        <nav>
+          <ul>
+            <li onClick={renderSignUpModalHandler}>SIGN UP</li>
+            <li>LOGIN</li>
+          </ul>
+        </nav>
+
+        <form>
+          <label>EMAIL:</label>
+          <input type="text" />
+
+          <label>PASSWORD:</label>
+          <input type="password" />
+
+          <button>LOG IN</button>
+        </form>
+      </Modal>
+    );
+  }
+};
+
+export default LogInModal;
