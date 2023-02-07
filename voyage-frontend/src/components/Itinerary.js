@@ -10,6 +10,18 @@ const Itinerary = (props) => {
 
   const fetchWeatherDataHandler = (event) => {
     const city = event.target.textContent;
+    const dateSpan = event.target.nextSibling;
+
+    let dateFrom = dateSpan.children[0].textContent;
+    let dateTo = dateSpan.children[1].textContent;
+
+    dateFrom = dateFrom.split('-');
+    dateFrom.splice(0, 1, Number(dateFrom[0]) - 1);
+    dateFrom = dateFrom.join('-');
+
+    dateTo = dateTo.split('-');
+    dateTo.splice(0, 1, Number(dateTo[0]) - 1);
+    dateTo = dateTo.join('-');
 
     async function getGeoLocation() {
       const res = await fetch(
@@ -23,7 +35,7 @@ const Itinerary = (props) => {
 
     async function getWeather(latitude, longitude) {
       const res = await fetch(
-        `https://archive-api.open-meteo.com/v1/archive?latitude=${latitude}&longitude=${longitude}&start_date=2023-01-01&end_date=2023-01-04&daily=temperature_2m_mean,apparent_temperature_mean&timezone=Australia%2FSydney`
+        `https://archive-api.open-meteo.com/v1/archive?latitude=${latitude}&longitude=${longitude}&start_date=${dateFrom}&end_date=${dateTo}&daily=temperature_2m_mean,apparent_temperature_mean&timezone=Australia%2FSydney`
       );
       const data = await res.json();
 
@@ -43,9 +55,15 @@ const Itinerary = (props) => {
         {destinationList.map(
           (destination, index) =>
             Object.keys(destination).length > 0 && (
-              <p key={index} onClick={fetchWeatherDataHandler}>
-                {destination.city}, {destination.country}
-              </p>
+              <div key={index} className="destination-list-item">
+                <p onClick={fetchWeatherDataHandler}>
+                  {destination.city} {destination.country}
+                </p>
+                <span>
+                  <span>{destination.dateFrom}</span>
+                  <span>{destination.dateTo}</span>
+                </span>
+              </div>
             )
         )}
       </div>

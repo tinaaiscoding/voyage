@@ -89,7 +89,8 @@ const AddDestinationForm = (props) => {
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}
-          dateFrom={props.dateFrom}
+          destinationData={props.destinationData}
+          setDestinationData={props.setDestinationData}
         />
         <SeasonFilter onFilterToggle={seasonChangeHandler} />
 
