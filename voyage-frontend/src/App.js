@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Home from './components/Home';
 import AddDestination from './components/AddDestination/AddDestination';
 import Itinerary from './components/Itinerary';
@@ -7,6 +9,19 @@ import { Routes, Route, Link } from 'react-router-dom';
 import './App.scss';
 
 function App() {
+  const [destinationData, setDestinationData] = useState({
+    country: '',
+    city: '',
+    dateFrom: '',
+    dateTo: '',
+    season: [],
+  });
+  const [destinationList, setDestinationList] = useState([]);
+
+  const getDestionationList = (destinationList) => {
+    setDestinationList([...destinationList, destinationList]);
+  };
+
   return (
     <div className="App">
       <nav>
@@ -17,8 +32,29 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/add-destination" element={<AddDestination />} />
-        <Route path="/itinerary" element={<Itinerary />} />
+        <Route
+          path="/add-destination"
+          element={
+            <AddDestination
+              onGetDestionationList={getDestionationList}
+              destinationData={destinationData}
+              setDestinationData={setDestinationData}
+              destinationList={destinationList}
+              setDestinationList={setDestinationList}
+            />
+          }
+        />
+        <Route
+          path="/itinerary"
+          element={
+            <Itinerary
+              destinationData={destinationData}
+              setDestinationData={setDestinationData}
+              destinationList={destinationList}
+              setDestinationList={setDestinationList}
+            />
+          }
+        />
       </Routes>
     </div>
   );

@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Countries from './Countries.js';
 import Cities from './Cities.js';
 import DateSelector from './DateSelector.js';
@@ -8,64 +6,56 @@ import SeasonFilter from './SeasonFilter.js';
 import './AddDestinationForm.scss';
 
 const AddDestinationForm = (props) => {
-  const [userInput, setUserInput] = useState({
-    enteredCountry: '',
-    enteredCity: '',
-    enteredDateFrom: '',
-    enteredDateTo: '',
-    selectedSeason: [],
-  });
-
   const countryChangeHandler = (country) => {
-    setUserInput((prevState) => {
+    props.setDestinationData((prevState) => {
       return {
         ...prevState,
-        enteredCountry: country,
+        country: country,
       };
     });
   };
 
   const cityChangeHandler = (city) => {
-    setUserInput((prevState) => {
+    props.setDestinationData((prevState) => {
       return {
         ...prevState,
-        enteredCity: city,
+        city: city,
       };
     });
   };
 
   const dateFromChangeHandler = (event) => {
-    setUserInput((prevState) => {
+    props.setDestinationData((prevState) => {
       return {
         ...prevState,
-        enteredDateFrom: event.target.value,
+        dateFrom: event.target.value,
       };
     });
   };
 
   const dateToChangeHandler = (event) => {
-    setUserInput((prevState) => {
+    props.setDestinationData((prevState) => {
       return {
         ...prevState,
-        enteredDateTo: event.target.value,
+        dateTo: event.target.value,
       };
     });
   };
 
   const seasonChangeHandler = (event) => {
-    setUserInput((prevState) => {
+    props.setDestinationData((prevState) => {
       if (event.target.checked) {
         return {
           ...prevState,
-          selectedSeason: [...userInput.selectedSeason, event.target.value],
+          season: [...props.season, event.target.value],
         };
       } else {
-        const selectedSeason = userInput.selectedSeason.filter((season) => {
+        const selectedSeason = props.season.filter((season) => {
           return season !== event.target.value;
         });
         return {
           ...prevState,
-          selectedSeason: selectedSeason,
+          season: selectedSeason,
         };
       }
     });
@@ -74,33 +64,32 @@ const AddDestinationForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    let destinationData = {
-      country: userInput.enteredCountry,
-      city: userInput.enteredCity,
-      dateFrom: userInput.enteredDateFrom,
-      dateTo: userInput.enteredDateTo,
-      season: userInput.selectedSeason,
-    }
-    props.onAddDestinationData(destinationData)
+    props.setDestinationList([
+      ...props.destinationList,
+      props.destinationData,
+    ]);
 
-    setUserInput({
-      enteredCountry: '',
-      enteredCity: '',
-      enteredDateFrom: '',
-      enteredDateTo: '',
-      selectedSeason: [],
+    props.setDestinationData({
+      country: '',
+      city: '',
+      dateFrom: '',
+      dateTo: '',
+      season: [],
     });
   };
 
   return (
     <div className="Add-Destination-Form">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
-        <Countries onSelectedCountry={countryChangeHandler} selectedCountry={userInput.enteredCountry} />
-        <Cities onSelectCity={cityChangeHandler} selectedCity={userInput.enteredCity} />
+        <Countries
+          onSelectedCountry={countryChangeHandler}
+          selectedCountry={props.country}
+        />
+        <Cities onSelectCity={cityChangeHandler} selectedCity={props.city} />
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}
-          dateFrom={userInput.enteredDateFrom}
+          dateFrom={props.dateFrom}
         />
         <SeasonFilter onFilterToggle={seasonChangeHandler} />
 
