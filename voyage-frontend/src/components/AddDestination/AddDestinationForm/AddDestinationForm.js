@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
+import Countries from './Countries.js';
+import Cities from './Cities.js';
+import DateSelector from './DateSelector.js';
 import SeasonFilter from './SeasonFilter.js';
-import { today, next365Days } from '../../../date.js';
+
 
 import './AddDestinationForm.scss';
 
@@ -14,20 +17,20 @@ const AddDestinationForm = (event) => {
     selectedSeason: [],
   });
 
-  const countryChangeHandler = (event) => {
+  const countryChangeHandler = (country) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredCountry: event.target.value,
+        enteredCountry: country,
       };
     });
   };
 
-  const cityChangeHandler = (event) => {
+  const cityChangeHandler = (city) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredCity: event.target.value,
+        enteredCity: city,
       };
     });
   };
@@ -78,31 +81,11 @@ const AddDestinationForm = (event) => {
   return (
     <div className="Add-Destination-Form">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
-        <select name="countries" form="Add-Destination-Form">
-          <option>COUNTRY</option>
-          <option value="australia">Australia</option>
-          <option value="united-kingdom">United Kingdom</option>
-          <option value="united-states-america">
-            United States of America
-          </option>
-          <option value="brazil">Brazil</option>
-        </select>
-
-        <select name="cities" form="Add-Destination-Form">
-          <option>CITY</option>
-          <option value="melbourne">Melbourne</option>
-          <option value="london">London</option>
-          <option value="seattle">Seattle</option>
-          <option value="rio-de-janeiro">Rio De Janeiro</option>
-        </select>
-
-        <p>DATES (optional):</p>
-        <label>FROM</label>
-        <input type="date" min={today} onChange={dateFromChangeHandler} />
-        <label>TO</label>
-        <input type="date" max={next365Days} onChange={dateFromChangeHandler} />
-
-        <SeasonFilter onFilterToggle={seasonChangeHandler} />
+      
+      <Countries onSelectedCountry={countryChangeHandler}/>
+      <Cities onSelectCity={cityChangeHandler}/>
+      <DateSelector onDateFromChange={dateFromChangeHandler} onDateToChange={dateToChangeHandler} dateFrom={userInput.enteredDateFrom} />
+      <SeasonFilter onFilterToggle={seasonChangeHandler} />
 
         <button type="submit">ADD</button>
       </form>
