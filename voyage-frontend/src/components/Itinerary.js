@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 
 const Itinerary = (props) => {
   const [destinationList, setDestinationList] = useState([]);
+  const [citySelected, setCitySelected] = useState({});
+  const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
 
   useEffect(() => {
     setDestinationList(props.destinationList);
@@ -44,7 +46,29 @@ const Itinerary = (props) => {
 
     getGeoLocation()
       .then((geoLocation) => getWeather(geoLocation.lat, geoLocation.lng))
-      .then((weatherData) => console.log(weatherData));
+      .then((weatherData) => setCityPrevWeatherData(weatherData.daily.temperature_2m_mean
+        ));
+
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        city: city,
+      };
+    });
+
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        dateFrom: dateFrom,
+      };
+    });
+
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        dateTo: dateTo,
+      };
+    });
   };
 
   return (
@@ -69,9 +93,12 @@ const Itinerary = (props) => {
       </div>
 
       <div className="weather-info">
-        <h2>WEATHER</h2>
-        <h4>DAY MONTH YEAR</h4>
-        <p>20°C</p>
+        <h2>WEATHER LAST YEAR</h2>
+        <h4>AVERAGE</h4>
+        <h4>
+          {citySelected.dateFrom} - {citySelected.dateTo}
+        </h4>
+        
       </div>
 
       <div className="clothes-to-pack-list">
