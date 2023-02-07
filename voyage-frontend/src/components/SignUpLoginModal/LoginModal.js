@@ -20,6 +20,12 @@ const LogInModal = (props) => {
     props.onModalClose();
   };
 
+  const loginNavSelected = {
+    backgroundColor: 'rgb(255, 140, 0)',
+    color: 'rgb(255, 240, 222)',
+    fontWeight: '700',
+  };
+
   if (displaySignUpModal) {
     return <SignUpModal onModalClose={closeSignUpModalHandler} />;
   } else {
@@ -33,8 +39,10 @@ const LogInModal = (props) => {
         </span>
         <nav>
           <ul>
-            <li onClick={renderSignUpModalHandler}>SIGN UP</li>
-            <li>LOGIN</li>
+            <li className="sign-up" onClick={renderSignUpModalHandler}>
+              SIGN UP
+            </li>
+            <li style={loginNavSelected}>LOGIN</li>
           </ul>
         </nav>
 

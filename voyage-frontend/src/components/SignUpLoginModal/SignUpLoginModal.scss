@@ -2,7 +2,8 @@ label {
   display: block;
 }
 
-#SignUp-Modal, #Login-Modal  {
+#SignUp-Modal,
+#Login-Modal {
   padding: 0;
   height: 375px;
 
@@ -10,11 +11,11 @@ label {
     display: inline-block;
     margin: 3px;
   }
-  
+
   form {
     margin-top: 25px;
   }
-  
+
   label {
     letter-spacing: 0.8px;
   }
@@ -23,21 +24,31 @@ label {
     margin-top: 15px;
   }
 
-  nav {
-   
-  }
+  // nav {
+
+  // }
 
   ul {
-    padding: 20px 0;
-    border: 1px solid rgb(180, 180, 180);
+    padding: 0;
+    border: 1px solid rgb(255, 170, 59);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .sign-up {
+      border-right: 1px solid rgb(255, 170, 59);
+      // background-color: rgb(255, 140, 0);
+      // color: rgb(255, 240, 222);
+      // font-weight: 700;
+    }
   }
 
   li {
-    display: inline;
+    display: inline-block;
     text-align: center;
-    margin: 0 70px;
-    width: 100%;
+    width: 50%;
     height: 100%;
+    padding: 20px 0;
+    color: rgb(255, 170, 59);
   }
 }
 
