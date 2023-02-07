@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+.home {
+  height: 100vh;
+  background-image: url(../images/background-6.jpg);
+  background-size: cover;
+  text-align: center;
+
+  .home-header {
+    padding: 130px;
+    color: rgb(255, 255, 252);
+    position: relative;
+
+    h1 {
+      margin: 0;
+      font-size: 5rem;
+      font-family: 'Paytone One', sans-serif;
+      letter-spacing: 15px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      position: relative;
+      top: 15px;
+    }
+
+    button {
+      margin: 30px auto;
+    }
+  }
+}
