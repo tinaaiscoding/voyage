@@ -1,4 +1,4 @@
-import AddDestinationForm from "./AddDestinationForm"
+import AddDestinationForm from "./AddDestinationForm/AddDestinationForm"
 import AddDestinationList from "./AddDestinationList"
 
 const AddDestination = () => {

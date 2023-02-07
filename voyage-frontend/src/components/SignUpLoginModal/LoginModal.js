@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import SignUpModal from './SignUpModal';
-
 import Modal from '../UI/Modal';
+
+import './SignUpLoginModal.scss'
 
 const LogInModal = (props) => {
   const closeLoginModalHandler = () => {
@@ -23,7 +24,7 @@ const LogInModal = (props) => {
     return <SignUpModal onModalClose={closeSignUpModalHandler} />;
   } else {
     return (
-      <Modal className="modal" id="Login-Modal">
+      <Modal id="Login-Modal">
         <span onClick={closeLoginModalHandler}>CLOSE</span>
         <nav>
           <ul>
