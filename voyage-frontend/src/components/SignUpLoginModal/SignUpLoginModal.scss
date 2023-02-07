@@ -3,7 +3,44 @@ label {
 }
 
 #SignUp-Modal, #Login-Modal  {
+  padding: 0;
+  height: 375px;
+
   input {
-    display: block;
+    display: inline-block;
+    margin: 3px;
   }
+  
+  form {
+    margin-top: 25px;
+  }
+  
+  label {
+    letter-spacing: 0.8px;
+  }
+
+  button {
+    margin-top: 15px;
+  }
+
+  nav {
+   
+  }
+
+  ul {
+    padding: 20px 0;
+    border: 1px solid rgb(180, 180, 180);
+  }
+
+  li {
+    display: inline;
+    text-align: center;
+    margin: 0 70px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#Login-Modal {
+  height: 300px;
 }

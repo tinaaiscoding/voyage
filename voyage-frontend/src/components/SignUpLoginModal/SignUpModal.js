@@ -2,7 +2,7 @@ import { useState } from 'react';
 import LoginModal from './LoginModal';
 import Modal from '../UI/Modal';
 
-import './SignUpLoginModal.scss'
+import './SignUpLoginModal.scss';
 
 const SignUpModal = (props) => {
   const closeSignUpModalHandler = () => {
@@ -25,7 +25,12 @@ const SignUpModal = (props) => {
   } else {
     return (
       <Modal id="SignUp-Modal">
-        <span onClick={closeSignUpModalHandler}>CLOSE</span>
+        <span
+          class="material-symbols-outlined"
+          onClick={closeSignUpModalHandler}
+        >
+          close
+        </span>
         <nav>
           <ul>
             <li>SIGN UP</li>
@@ -43,7 +48,7 @@ const SignUpModal = (props) => {
           <label>PASSWORD:</label>
           <input type="password" />
 
-          <button>SIGN UP</button>
+          <button className="button-80">SIGN UP</button>
         </form>
       </Modal>
     );
