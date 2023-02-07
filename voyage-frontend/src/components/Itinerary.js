@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-// import fetchWeather from '../fetch/weather';
+import { getGeoLocation, getWeather } from '../fetch/weather';
 
 const Itinerary = (props) => {
   const [destinationList, setDestinationList] = useState([]);
@@ -25,29 +25,13 @@ const Itinerary = (props) => {
     dateTo.splice(0, 1, Number(dateTo[0]) - 1);
     dateTo = dateTo.join('-');
 
-    async function getGeoLocation() {
-      const res = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=a33a12b5491642ba990f1d8907ae6f5e`
+    getGeoLocation(city)
+      .then((geoLocation) =>
+        getWeather(geoLocation.lat, geoLocation.lng, dateFrom, dateTo)
+      )
+      .then((weatherData) =>
+        setCityPrevWeatherData(weatherData.daily.temperature_2m_mean)
       );
-      const data = await res.json();
-      const geoLocation = data.results[0].geometry;
-
-      return geoLocation;
-    }
-
-    async function getWeather(latitude, longitude) {
-      const res = await fetch(
-        `https://archive-api.open-meteo.com/v1/archive?latitude=${latitude}&longitude=${longitude}&start_date=${dateFrom}&end_date=${dateTo}&daily=temperature_2m_mean,apparent_temperature_mean&timezone=Australia%2FSydney`
-      );
-      const data = await res.json();
-
-      return data;
-    }
-
-    getGeoLocation()
-      .then((geoLocation) => getWeather(geoLocation.lat, geoLocation.lng))
-      .then((weatherData) => setCityPrevWeatherData(weatherData.daily.temperature_2m_mean
-        ));
 
     setCitySelected((prevState) => {
       return {
@@ -93,12 +77,20 @@ const Itinerary = (props) => {
       </div>
 
       <div className="weather-info">
-        <h2>WEATHER LAST YEAR</h2>
+        {Object.keys(cityPrevWeatherData).length > 0 && (
+          <div>
+            <h3>{citySelected.city}'s </h3>
+            <h2>Average Weather Last Year</h2>
+            <p className="last-year-avg-temp">
+              {cityPrevWeatherData.reduce((a, b) => a + b, 0) /
+                cityPrevWeatherData.length}
+            </p>
+          </div>
+        )}
         <h4>AVERAGE</h4>
         <h4>
           {citySelected.dateFrom} - {citySelected.dateTo}
         </h4>
-        
       </div>
 
       <div className="clothes-to-pack-list">
