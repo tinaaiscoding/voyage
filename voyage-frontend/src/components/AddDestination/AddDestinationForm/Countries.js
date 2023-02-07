@@ -13,6 +13,7 @@ const Countries = (props) => {
         name="countries"
         form="Add-Destination-Form"
         onChange={storeCountryHandler}
+        value={props.selectedCountry}
       >
         <option>COUNTRY</option>
         <option value="Australia">Australia</option>

@@ -5,10 +5,9 @@ import Cities from './Cities.js';
 import DateSelector from './DateSelector.js';
 import SeasonFilter from './SeasonFilter.js';
 
-
 import './AddDestinationForm.scss';
 
-const AddDestinationForm = (event) => {
+const AddDestinationForm = (props) => {
   const [userInput, setUserInput] = useState({
     enteredCountry: '',
     enteredCity: '',
@@ -61,31 +60,49 @@ const AddDestinationForm = (event) => {
           selectedSeason: [...userInput.selectedSeason, event.target.value],
         };
       } else {
-        const selectedSeason = userInput.selectedSeason.filter(season => {
-          return season !== event.target.value
-        })
+        const selectedSeason = userInput.selectedSeason.filter((season) => {
+          return season !== event.target.value;
+        });
         return {
           ...prevState,
-          selectedSeason: selectedSeason
+          selectedSeason: selectedSeason,
         };
       }
     });
   };
 
-  const submitHandler = () => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
-    const destinationData = {};
+    let destinationData = {
+      country: userInput.enteredCountry,
+      city: userInput.enteredCity,
+      dateFrom: userInput.enteredDateFrom,
+      dateTo: userInput.enteredDateTo,
+      season: userInput.selectedSeason,
+    }
+    props.onAddDestinationData(destinationData)
+
+    setUserInput({
+      enteredCountry: '',
+      enteredCity: '',
+      enteredDateFrom: '',
+      enteredDateTo: '',
+      selectedSeason: [],
+    });
   };
 
   return (
     <div className="Add-Destination-Form">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
-      
-      <Countries onSelectedCountry={countryChangeHandler}/>
-      <Cities onSelectCity={cityChangeHandler}/>
-      <DateSelector onDateFromChange={dateFromChangeHandler} onDateToChange={dateToChangeHandler} dateFrom={userInput.enteredDateFrom} />
-      <SeasonFilter onFilterToggle={seasonChangeHandler} />
+        <Countries onSelectedCountry={countryChangeHandler} selectedCountry={userInput.enteredCountry} />
+        <Cities onSelectCity={cityChangeHandler} selectedCity={userInput.enteredCity} />
+        <DateSelector
+          onDateFromChange={dateFromChangeHandler}
+          onDateToChange={dateToChangeHandler}
+          dateFrom={userInput.enteredDateFrom}
+        />
+        <SeasonFilter onFilterToggle={seasonChangeHandler} />
 
         <button type="submit">ADD</button>
       </form>

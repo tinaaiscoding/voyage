@@ -13,6 +13,7 @@ const Cities = (props) => {
         name="cities"
         form="Add-Destination-Form"
         onChange={storeCityHandler}
+        value={props.selectedCity}
       >
         <option>CITY</option>
         <option value="Melbourne">Melbourne</option>
