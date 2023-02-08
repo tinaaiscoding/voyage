@@ -7,10 +7,10 @@ import DateSelector from './DateSelector';
 import './EditCityModal.scss';
 
 const EditCityModal = (props) => {
-  const [editList, setEditList] = useState(props.destinationList);
+  const [editData, setEditData] = useState(props.destinationList[props.index]);
 
   const countryChangeHandler = (country) => {
-    props.setDestinationData((prevState) => {
+    setEditData((prevState) => {
       return {
         ...prevState,
         country: country,
@@ -19,7 +19,7 @@ const EditCityModal = (props) => {
   };
 
   const cityChangeHandler = (city) => {
-    props.setDestinationData((prevState) => {
+    setEditData((prevState) => {
       return {
         ...prevState,
         city: city,
@@ -28,7 +28,7 @@ const EditCityModal = (props) => {
   };
 
   const dateFromChangeHandler = (event) => {
-    props.setDestinationData((prevState) => {
+    setEditData((prevState) => {
       return {
         ...prevState,
         dateFrom: event.target.value,
@@ -37,7 +37,7 @@ const EditCityModal = (props) => {
   };
 
   const dateToChangeHandler = (event) => {
-    props.setDestinationData((prevState) => {
+    setEditData((prevState) => {
       return {
         ...prevState,
         dateTo: event.target.value,
@@ -45,28 +45,34 @@ const EditCityModal = (props) => {
     });
   };
 
+  const editHandler = (event) => {
+    event.preventDefault();
+
+    props.destinationList.splice(props.index, 1, editData);
+
+    props.setDestinationList(props.destinationList);
+    props.onModalClose();
+  };
+
   return (
     <Modal id="Edit-City-Modal">
       <span className="material-symbols-outlined" onClick={props.onModalClose}>
         close
       </span>
-      <form className="Edit-Destination-Form">
+      <form className="Edit-Destination-Form" onSubmit={editHandler}>
         <h2>Edit City</h2>
         <Countries
           onSelectedCountry={countryChangeHandler}
-          selectedCountry={props.destinationList[props.index].country}
+          selectedCountry={editData.country}
         />
-        <Cities
-          onSelectCity={cityChangeHandler}
-          selectedCity={props.destinationList[props.index].city}
-        />
+        <Cities onSelectCity={cityChangeHandler} selectedCity={editData.city} />
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}
           destinationData={props.destinationData}
           setDestinationData={props.setDestinationData}
-          selectedDateFrom={props.destinationList[props.index].dateFrom}
-          selectedDateTo={props.destinationList[props.index].dateTo}
+          selectedDateFrom={editData.dateFrom}
+          selectedDateTo={editData.dateTo}
         />
 
         <button type="submit">EDIT</button>
