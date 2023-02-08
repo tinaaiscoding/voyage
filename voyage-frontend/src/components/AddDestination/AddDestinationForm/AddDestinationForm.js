@@ -3,6 +3,8 @@ import Cities from './Cities.js';
 import DateSelector from './DateSelector.js';
 import SeasonFilter from './SeasonFilter.js';
 
+import { getGeoLocation } from '../../../fetch/weather.js';
+
 import './AddDestinationForm.scss';
 
 const AddDestinationForm = (props) => {
@@ -64,10 +66,17 @@ const AddDestinationForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    props.setDestinationList([
-      ...props.destinationList,
-      props.destinationData,
-    ]);
+    props.setDestinationList([...props.destinationList, props.destinationData]);
+
+    getGeoLocation(props.destinationData.city).then((geoLocation) => {
+      props.setMarkerInfo((prevState) => {
+        return {
+          ...prevState,
+          name: props.destinationData.city,
+          coordinates: [geoLocation.lng, geoLocation.lat],
+        };
+      });
+    });
 
     props.setDestinationData({
       country: '',
@@ -85,7 +94,10 @@ const AddDestinationForm = (props) => {
           onSelectedCountry={countryChangeHandler}
           selectedCountry={props.destinationData.country}
         />
-        <Cities onSelectCity={cityChangeHandler} selectedCity={props.destinationData.city} />
+        <Cities
+          onSelectCity={cityChangeHandler}
+          selectedCity={props.destinationData.city}
+        />
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}
