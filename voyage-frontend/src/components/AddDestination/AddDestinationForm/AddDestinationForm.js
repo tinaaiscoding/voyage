@@ -69,19 +69,6 @@ const AddDestinationForm = (props) => {
 
     props.setDestinationList([...props.destinationList, props.destinationData]);
 
-    getGeoLocation(props.destinationData.city)
-      .then((geoLocation) => {
-        props.setMarkerInfo((prevState) => {
-          return {
-            ...prevState,
-            name: props.destinationData.city,
-            coordinates: [geoLocation.lng, geoLocation.lat],
-          };
-        });
-      })
-
-   
-
     props.setDestinationData({
       country: '',
       city: '',
@@ -90,11 +77,35 @@ const AddDestinationForm = (props) => {
       season: [],
     });
 
+    props.setMarkerInfo({ markerOffset: -8, name: '', coordinates: [] });
   };
-  useEffect(() => {
-    props.setMarkerList([...props.markerList, props.markerInfo]);
 
-  }, [props.markerInfo])
+  useEffect(() => {
+    async function getCoordinates() {
+      const geoLocation = await getGeoLocation(props.destinationData.city);
+      props.setMarkerInfo((prevState) => {
+        return {
+          ...prevState,
+          name: props.destinationData.city,
+          coordinates: [geoLocation.lng, geoLocation.lat],
+        };
+      });
+    }
+
+    getCoordinates();
+  }, [props.destinationData]);
+
+
+  useEffect(() => {
+    if (
+      props.destinationData.country === '' &&
+      props.destinationData.city === ''
+    ) {
+      console.log('No data to add to marker list');
+    } else {
+      props.setMarkerList((prevState) => [...prevState, props.markerInfo]);
+    }
+  }, [props.markerInfo]);
 
   return (
     <div className="Add-Destination-Form add-destination-card">

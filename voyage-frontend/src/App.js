@@ -22,7 +22,7 @@ function App() {
   const [markerInfo, setMarkerInfo] = useState({
     markerOffset: -8,
     name: '',
-    coordinates: [0, 0],
+    coordinates: [],
   });
   const [markerList, setMarkerList] = useState([]);
 
@@ -68,8 +68,12 @@ function App() {
         <Route
           path="/map"
           element={
-            <Map markerInfo={markerInfo} setMarkerInfo={setMarkerInfo}  markerList={markerList}
-            setMarkerList={setMarkerList} />
+            <Map
+              markerInfo={markerInfo}
+              setMarkerInfo={setMarkerInfo}
+              markerList={markerList}
+              setMarkerList={setMarkerList}
+            />
           }
         />
       </Routes>

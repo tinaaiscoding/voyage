@@ -70,11 +70,12 @@ const Itinerary = (props) => {
     props.setDestinationList(remainingCities);
 
     console.log(props.markerInfo)
-    const remainingCitiesMarker = props.markerInfo.filter(
+    console.log(indexOfCity)
+    const remainingCitiesMarker = props.markerList.filter(
       (city, i) => i !== indexOfCity
     );
 
-    props.setMarkerInfo(remainingCitiesMarker);
+    props.setMarkerList(remainingCitiesMarker);
   };
 
   const renderEditModalHandler = (indexOfCity) => {

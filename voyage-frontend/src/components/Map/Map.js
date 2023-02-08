@@ -11,9 +11,7 @@ import './Map.scss';
 
 const Map = (props) => {
 
-  // useEffect(() => {
-  //   setMarkers((prevState) => [...prevState, props.markerInfo]);
-  // }, [props.markerInfo]);
+console.log('MAP')
 console.log(props.markerList)
   return (
     <div className="Map">
