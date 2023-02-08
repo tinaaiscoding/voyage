@@ -32,7 +32,7 @@ const LogInModal = (props) => {
     return (
       <Modal id="Login-Modal">
         <span
-          class="material-symbols-outlined"
+          className="material-symbols-outlined"
           onClick={closeLoginModalHandler}
         >
           close

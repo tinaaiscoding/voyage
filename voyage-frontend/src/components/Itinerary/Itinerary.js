@@ -9,10 +9,6 @@ const Itinerary = (props) => {
   const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
   const [displayEditModal, setDisplayEditModal] = useState(false);
 
-  // useEffect(() => {
-  //   setDestinationList(props.destinationList);
-  // }, [props.destinationList]);
-
   const fetchWeatherDataHandler = (event) => {
     const city = event.target.textContent;
     const dateSpan = event.target.nextSibling;
@@ -39,7 +35,14 @@ const Itinerary = (props) => {
     setCitySelected((prevState) => {
       return {
         ...prevState,
-        city: city,
+        city: city.split(', ')[0],
+      };
+    });
+
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        country: city.split(', ')[1],
       };
     });
 
@@ -86,8 +89,8 @@ const Itinerary = (props) => {
           (destination, index) =>
             Object.keys(destination).length > 0 && (
               <div key={index} className="destination-list-item">
-                <p contenteditable="true" onClick={fetchWeatherDataHandler}>
-                  {destination.city} {destination.country}
+                <p onClick={fetchWeatherDataHandler}>
+                  {destination.city}, {destination.country}
                 </p>
                 <div>
                   <p>{destination.dateFrom}</p>
@@ -116,7 +119,7 @@ const Itinerary = (props) => {
       <div className="weather-info itinerary-card">
         {Object.keys(cityPrevWeatherData).length > 0 ? (
           <div>
-            <h3>{citySelected.city}'s </h3>
+            <h3>{citySelected.city}, {citySelected.country}</h3>
             <h2>Average Weather Last Year</h2>
             <p className="last-year-avg-temp">
               {cityPrevWeatherData.reduce((a, b) => a + b, 0) /
@@ -143,6 +146,7 @@ const Itinerary = (props) => {
           setDestinationData={props.setDestinationData}
           destinationList={props.destinationList}
           setDestinationList={props.setDestinationList}
+          citySelected={citySelected}
         />
       )}
     </div>

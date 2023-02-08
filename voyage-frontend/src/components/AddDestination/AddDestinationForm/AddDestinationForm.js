@@ -47,10 +47,10 @@ const AddDestinationForm = (props) => {
       if (event.target.checked) {
         return {
           ...prevState,
-          season: [...props.season, event.target.value],
+          season: [...props.destinationData.season, event.target.value],
         };
       } else {
-        const selectedSeason = props.season.filter((season) => {
+        const selectedSeason = props.destinationData.season.filter((season) => {
           return season !== event.target.value;
         });
         return {

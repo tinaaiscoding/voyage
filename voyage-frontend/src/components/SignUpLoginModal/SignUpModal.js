@@ -32,7 +32,7 @@ const SignUpModal = (props) => {
     return (
       <Modal id="SignUp-Modal">
         <span
-          class="material-symbols-outlined"
+          className="material-symbols-outlined"
           onClick={closeSignUpModalHandler}
         >
           close

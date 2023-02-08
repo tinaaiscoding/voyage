@@ -46,7 +46,7 @@ const EditCityModal = (props) => {
   return (
     <Modal id="Edit-City-Modal">
          <span
-          class="material-symbols-outlined"
+          className="material-symbols-outlined"
           onClick={props.onModalClose}
         >
           close
