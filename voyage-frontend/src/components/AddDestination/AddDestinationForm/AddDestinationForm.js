@@ -83,9 +83,9 @@ const AddDestinationForm = (props) => {
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
         <Countries
           onSelectedCountry={countryChangeHandler}
-          selectedCountry={props.country}
+          selectedCountry={props.destinationData.country}
         />
-        <Cities onSelectCity={cityChangeHandler} selectedCity={props.city} />
+        <Cities onSelectCity={cityChangeHandler} selectedCity={props.destinationData.city} />
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}
