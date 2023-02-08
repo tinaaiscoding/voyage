@@ -29,13 +29,6 @@ label {
     border: 1px solid rgb(255, 170, 59);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
-    .sign-up {
-      border-right: 1px solid rgb(255, 170, 59);
-      background-color: rgb(255, 140, 0);
-      color: rgb(255, 240, 222);
-      font-weight: 700;
-    }
   }
 
   li {
@@ -45,6 +38,8 @@ label {
     height: 100%;
     padding: 20px 0;
     color: rgb(255, 170, 59);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 }
 

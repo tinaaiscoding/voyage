@@ -1,8 +1,19 @@
-a {
-  margin: 8px;
-}
-
 .nav-bar {
+  background-color: #3b88c0;
   position: sticky;
   top: 0;
+  text-align: center;
+  padding: 10px 0;
+
+  a {
+    margin: 20px;
+    text-decoration: none;
+    color: rgb(154, 199, 247);
+    letter-spacing: 1.5px;
+  }
+
+  a:hover {
+    color: #ffffff;
+  }
 }
+ 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import AddDestination from './components/AddDestination/AddDestination';
 import Itinerary from './components/Itinerary/Itinerary';
 import Map from './components/Map/Map';
@@ -31,10 +31,10 @@ function App() {
   return (
     <div className="App">
       <nav className="nav-bar">
-        <Link to="/">Home</Link>
-        <Link to="/add-destination">Add Destination</Link>
-        <Link to="/itinerary">Itinerary</Link>
-        <Link to="/map">Map</Link>
+        <Link to="/">HOME</Link>
+        <Link to="/add-destination">ADD DESTINATION</Link>
+        <Link to="/itinerary">ITINERARY</Link>
+        <Link to="/map">MAP</Link>
       </nav>
 
       <Routes>

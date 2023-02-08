@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SignUpModal from './SignUpModal';
-import Modal from '../UI/Modal';
+import Modal from '../../UI/Modal';
 
 import './SignUpLoginModal.scss';
 
@@ -22,7 +22,7 @@ const LogInModal = (props) => {
 
   const loginNavSelected = {
     backgroundColor: 'rgb(255, 140, 0)',
-    color: 'rgb(255, 240, 222);',
+    color: 'rgb(255, 240, 222)',
     fontWeight: '700',
   };
 
