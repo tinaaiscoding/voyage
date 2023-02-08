@@ -5,9 +5,8 @@ import {
   Geography,
   ZoomableGroup,
   Marker,
-  Annotation,
 } from 'react-simple-maps';
-import markers from './markers';
+import markers from './markerData';
 
 import './Map.scss';
 
@@ -25,12 +24,8 @@ const Map = () => (
 
         {markers.map(({ name, coordinates, markerOffset }) => (
           <Marker key={name} coordinates={coordinates}>
-            <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
-            <text
-              textAnchor="middle"
-              y={markerOffset}
-              style={{ fontFamily: 'system-ui', fill: '#5D5A6D' }}
-            >
+            <circle className="marker-circle" r={3} />
+            <text textAnchor="middle" y={markerOffset} className="marker-text">
               {name}
             </text>
           </Marker>

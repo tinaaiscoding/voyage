@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
+      <nav className='nav-bar'>
         <Link to="/">Home</Link>
         <Link to="/add-destination">Add Destination</Link>
         <Link to="/itinerary">Itinerary</Link>

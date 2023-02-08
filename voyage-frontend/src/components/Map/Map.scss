@@ -4,10 +4,22 @@ svg {
 }
 
 path {
-  fill: #7aa5c6;
+  fill: #c4e1f7;
 }
 
 .Map {
   font-family: sans-serif;
   text-align: center;
+}
+
+
+.marker-circle {
+  fill: rgb(255, 44, 121);
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.marker-text {
+  fill: rgb(4, 4, 140);
+  font-size: 0.6rem;
 }
