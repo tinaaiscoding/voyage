@@ -15,7 +15,6 @@ const Map = (props) => {
 
   useEffect(() => {
     setMarkers([...markers, props.markerInfo]);
-    console.log(markers)
   }, [props.markerInfo]);
 
 
@@ -33,6 +32,7 @@ const Map = (props) => {
           </Geographies>
 
           {markers.map(({ name, coordinates, markerOffset }, index) => (
+            coordinates[0] !== 0  &&
             <Marker key={name} coordinates={coordinates}>
               <circle className="marker-circle" r={3} />
               <text

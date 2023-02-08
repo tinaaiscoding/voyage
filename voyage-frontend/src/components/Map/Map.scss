@@ -1,17 +1,18 @@
 svg {
   display: inline-block;
   vertical-align: middle;
+
+  background-color: #c4ecf7;
 }
 
 path {
-  fill: #c4e1f7;
+  fill: white;
 }
 
 .Map {
   font-family: sans-serif;
   text-align: center;
 }
-
 
 .marker-circle {
   fill: rgb(255, 44, 121);
