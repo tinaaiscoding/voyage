@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { getGeoLocation, getWeather } from '../../fetch/weather';
-import EditCityModal from './EditCityModal';
+import Clothes from './Clothes';
+import AvgWeather from './AvgWeather';
+import ItineraryDesList from './ItineraryDesList';
 
 import './Itinerary.scss';
 
@@ -66,6 +68,13 @@ const Itinerary = (props) => {
       (city, i) => i !== indexOfCity
     );
     props.setDestinationList(remainingCities);
+
+    console.log(props.markerInfo)
+    const remainingCitiesMarker = props.markerInfo.filter(
+      (city, i) => i !== indexOfCity
+    );
+
+    props.setMarkerInfo(remainingCitiesMarker);
   };
 
   const renderEditModalHandler = (indexOfCity) => {
@@ -79,7 +88,6 @@ const Itinerary = (props) => {
   };
 
   const closeEditModalHandler = () => {
-
     setDisplayEditModal(false);
   };
 
@@ -89,73 +97,28 @@ const Itinerary = (props) => {
         <h1>ITINERARY</h1>
       </div>
       <div className="itinerary-destination-list itinerary-card">
-        <h2>DESTINATION</h2>
-        <span>SORT BY DATE</span>
-
-        {props.destinationList.map(
-          (destination, index) =>
-            Object.keys(destination).length > 0 && (
-              <div key={index} className="destination-list-item">
-                <p onClick={fetchWeatherDataHandler}>
-                  {destination.city}, {destination.country}
-                </p>
-                <div>
-                  <p>{destination.dateFrom}</p>
-                  <p>{destination.dateTo}</p>
-                </div>
-
-                <div className="destination-controls">
-                  <span
-                    className="material-symbols-outlined"
-                    onClick={() => renderEditModalHandler(index)}
-                  >
-                    edit
-                  </span>
-                  <span
-                    className="material-symbols-outlined"
-                    onClick={() => deleteCityHandler(index)}
-                  >
-                    delete
-                  </span>
-                </div>
-              </div>
-            )
-        )}
-        {displayEditModal && (
-          <EditCityModal
-            onModalClose={closeEditModalHandler}
-            destinationData={props.destinationData}
-            setDestinationData={props.setDestinationData}
-            destinationList={props.destinationList}
-            setDestinationList={props.setDestinationList}
-            index={citySelected.index}
-          />
-        )}
+        <ItineraryDesList
+          destinationData={props.destinationData}
+          destinationList={props.destinationList}
+          setDestinationList={props.setDestinationList}
+          renderEditModalHandler={renderEditModalHandler}
+          deleteCityHandler={deleteCityHandler}
+          displayEditModal={displayEditModal}
+          citySelected={citySelected}
+          closeEditModalHandler={closeEditModalHandler}
+          fetchWeatherDataHandler={fetchWeatherDataHandler}
+        />
       </div>
 
       <div className="weather-info itinerary-card">
-        {Object.keys(cityPrevWeatherData).length > 0 ? (
-          <div>
-            <h3>
-              {citySelected.city}, {citySelected.country}
-            </h3>
-            <h2>Average Weather Last Year</h2>
-            <p className="last-year-avg-temp">
-              {cityPrevWeatherData.reduce((a, b) => a + b, 0) /
-                cityPrevWeatherData.length}
-            </p>
-            <h4>AVERAGE</h4>
-            <h4>
-              {citySelected.dateFrom} - {citySelected.dateTo}
-            </h4>
-          </div>
-        ) : (
-          <h2>Average Weather Last Year</h2>
-        )}
+        <AvgWeather
+          cityPrevWeatherData={cityPrevWeatherData}
+          citySelected={citySelected}
+        />
       </div>
 
       <div className="clothes-to-pack-list itinerary-card">
-        <h2>CLOTHES TO PACK</h2>
+        <Clothes />
       </div>
     </div>
   );

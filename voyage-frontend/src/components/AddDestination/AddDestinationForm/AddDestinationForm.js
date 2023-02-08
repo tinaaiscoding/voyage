@@ -6,6 +6,7 @@ import SeasonFilter from './SeasonFilter.js';
 import { getGeoLocation } from '../../../fetch/weather.js';
 
 import './AddDestinationForm.scss';
+import { useEffect } from 'react';
 
 const AddDestinationForm = (props) => {
   const countryChangeHandler = (country) => {
@@ -68,15 +69,18 @@ const AddDestinationForm = (props) => {
 
     props.setDestinationList([...props.destinationList, props.destinationData]);
 
-    getGeoLocation(props.destinationData.city).then((geoLocation) => {
-      props.setMarkerInfo((prevState) => {
-        return {
-          ...prevState,
-          name: props.destinationData.city,
-          coordinates: [geoLocation.lng, geoLocation.lat],
-        };
-      });
-    });
+    getGeoLocation(props.destinationData.city)
+      .then((geoLocation) => {
+        props.setMarkerInfo((prevState) => {
+          return {
+            ...prevState,
+            name: props.destinationData.city,
+            coordinates: [geoLocation.lng, geoLocation.lat],
+          };
+        });
+      })
+
+   
 
     props.setDestinationData({
       country: '',
@@ -85,7 +89,12 @@ const AddDestinationForm = (props) => {
       dateTo: '',
       season: [],
     });
+
   };
+  useEffect(() => {
+    props.setMarkerList([...props.markerList, props.markerInfo]);
+
+  }, [props.markerInfo])
 
   return (
     <div className="Add-Destination-Form add-destination-card">

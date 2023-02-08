@@ -10,15 +10,11 @@ import {
 import './Map.scss';
 
 const Map = (props) => {
-  console.log(props.markerInfo);
-  const [markers, setMarkers] = useState([]);
 
-  useEffect(() => {
-    setMarkers([...markers, props.markerInfo]);
-  }, [props.markerInfo]);
-
-
-
+  // useEffect(() => {
+  //   setMarkers((prevState) => [...prevState, props.markerInfo]);
+  // }, [props.markerInfo]);
+console.log(props.markerList)
   return (
     <div className="Map">
       <ComposableMap>
@@ -31,19 +27,21 @@ const Map = (props) => {
             }
           </Geographies>
 
-          {markers.map(({ name, coordinates, markerOffset }, index) => (
-            coordinates[0] !== 0  &&
-            <Marker key={name} coordinates={coordinates}>
-              <circle className="marker-circle" r={3} />
-              <text
-                textAnchor="middle"
-                y={markerOffset}
-                className="marker-text"
-              >
-                {name}
-              </text>
-            </Marker>
-          ))}
+          {props.markerList.map(
+            ({ name, coordinates, markerOffset }, index) =>
+              coordinates[0] !== 0 && (
+                <Marker key={index} name={name} coordinates={coordinates}>
+                  <circle className="marker-circle" r={3} />
+                  <text
+                    textAnchor="middle"
+                    y={markerOffset}
+                    className="marker-text"
+                  >
+                    {name}
+                  </text>
+                </Marker>
+              )
+          )}
         </ZoomableGroup>
       </ComposableMap>
     </div>

@@ -18,15 +18,13 @@ function App() {
     season: [],
   });
   const [destinationList, setDestinationList] = useState([]);
+
   const [markerInfo, setMarkerInfo] = useState({
     markerOffset: -8,
     name: '',
-    coordinates: [0, 0]
+    coordinates: [0, 0],
   });
-
-  const getDestionationList = (destinationList) => {
-    setDestinationList([...destinationList, destinationList]);
-  };
+  const [markerList, setMarkerList] = useState([]);
 
   return (
     <div className="App">
@@ -43,13 +41,14 @@ function App() {
           path="/add-destination"
           element={
             <AddDestination
-              onGetDestionationList={getDestionationList}
               destinationData={destinationData}
               setDestinationData={setDestinationData}
               destinationList={destinationList}
               setDestinationList={setDestinationList}
-              markerInfo={markerInfo} 
-              setMarkerInfo={setMarkerInfo} 
+              markerInfo={markerInfo}
+              setMarkerInfo={setMarkerInfo}
+              markerList={markerList}
+              setMarkerList={setMarkerList}
             />
           }
         />
@@ -61,16 +60,16 @@ function App() {
               setDestinationData={setDestinationData}
               destinationList={destinationList}
               setDestinationList={setDestinationList}
+              markerInfo={markerInfo}
+              setMarkerInfo={setMarkerInfo}
             />
           }
         />
         <Route
           path="/map"
           element={
-            <Map 
-              markerInfo={markerInfo} 
-              setMarkerInfo={setMarkerInfo} 
-            />
+            <Map markerInfo={markerInfo} setMarkerInfo={setMarkerInfo}  markerList={markerList}
+            setMarkerList={setMarkerList} />
           }
         />
       </Routes>

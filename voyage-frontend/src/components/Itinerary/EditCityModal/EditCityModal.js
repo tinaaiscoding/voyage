@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import Modal from '../UI/Modal';
+import Modal from '../../UI/Modal';
 import Countries from './Countries';
 import Cities from './Cities';
 import DateSelector from './DateSelector';

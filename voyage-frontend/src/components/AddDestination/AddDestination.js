@@ -1,13 +1,13 @@
 import AddDestinationForm from './AddDestinationForm/AddDestinationForm';
 import AddDestinationList from './AddDestinationList';
 
-import './AddDestination.scss'
+import './AddDestination.scss';
 
 const AddDestination = (props) => {
   return (
     <div className="Add-Destination add-destination-grid">
       <div className="add-destination-header">
-      <h1>SELECT YOUR DESTINATION</h1>
+        <h1>SELECT YOUR DESTINATION</h1>
       </div>
 
       <AddDestinationForm
@@ -15,8 +15,10 @@ const AddDestination = (props) => {
         setDestinationData={props.setDestinationData}
         destinationList={props.destinationList}
         setDestinationList={props.setDestinationList}
-        markerInfo={props.markerInfo} 
-        setMarkerInfo={props.setMarkerInfo} 
+        markerInfo={props.markerInfo}
+        setMarkerInfo={props.setMarkerInfo}
+        markerList={props.markerList}
+        setMarkerList={props.setMarkerList}
       />
       <AddDestinationList
         destinationData={props.destinationData}
