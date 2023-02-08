@@ -1,0 +1,41 @@
+.Add-Destination {
+  background-color: rgb(226, 251, 255);
+  height: 100vh;
+}
+
+.add-destination-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'header header'
+    'form dest';
+}
+
+.add-destination-header {
+  grid-area: header;
+}
+.Add-Destination-List {
+  grid-area: dest;
+  width: 60%;
+}
+div.Add-Destination-Form {
+  grid-area: form;
+  padding: 30px 50px;
+  width: 60%;
+
+  select,
+  input,
+  button {
+    padding: 5px;
+    margin: 10px;
+  }
+}
+
+.add-destination-card {
+  background-color: white;
+  border-radius: 20px;
+  margin: 20px;
+  box-shadow: 6px 5px 4px 0px grey;
+}

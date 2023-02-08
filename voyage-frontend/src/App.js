@@ -28,6 +28,7 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/add-destination">Add Destination</Link>
         <Link to="/itinerary">Itinerary</Link>
+        <Link to="/map">Map</Link>
       </nav>
 
       <Routes>

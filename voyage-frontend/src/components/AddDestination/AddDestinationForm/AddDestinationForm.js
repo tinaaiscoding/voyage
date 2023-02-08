@@ -79,7 +79,7 @@ const AddDestinationForm = (props) => {
   };
 
   return (
-    <div className="Add-Destination-Form">
+    <div className="Add-Destination-Form add-destination-card">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
         <Countries
           onSelectedCountry={countryChangeHandler}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddDestinationList = (props) => {
   return (
-    <div className="Add-Destination-List">
+    <div className="Add-Destination-List add-destination-card">
       <h2>Destinations</h2>
 
       {props.destinationList.map(

@@ -1,0 +1,38 @@
+.Itinerary {
+  background-color: rgb(226, 251, 255);
+  height: 100vh;
+}
+.itinerary-grid {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 0.1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "header header"
+    "dest weather"
+    "dest clothes"; 
+}
+
+.itinerary-header {
+  grid-area: header;
+}
+
+.itinerary-destination-list {
+  grid-area: dest;
+
+}
+
+.weather-info {
+  grid-area: weather;
+}
+
+.clothes-to-pack-list {
+  grid-area: clothes;
+}
+
+.itinerary-card {
+  background-color: white;
+  border-radius: 20px;
+  margin: 20px;
+  box-shadow: 6px 5px 4px 0px grey;
+}

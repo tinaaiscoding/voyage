@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { getGeoLocation, getWeather } from '../fetch/weather';
 
+import './Itinerary.scss';
+
 const Itinerary = (props) => {
   const [destinationList, setDestinationList] = useState([]);
   const [citySelected, setCitySelected] = useState({});
   const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
 
-  useEffect(() => {
-    setDestinationList(props.destinationList);
-  }, [props.destinationList]);
+  // useEffect(() => {
+  //   setDestinationList(props.destinationList);
+  // }, [props.destinationList]);
 
   const fetchWeatherDataHandler = (event) => {
     const city = event.target.textContent;
@@ -55,29 +57,50 @@ const Itinerary = (props) => {
     });
   };
 
+  const deleteCityHandler = (indexOfCity) => {
+    const remainingCities = props.destinationList.filter(
+      (city, i) => i !== indexOfCity
+    );
+    props.setDestinationList(remainingCities);
+  };
+
   return (
-    <div className="Itinerary">
-      <h1>ITINERARY</h1>
-      <div className="destination-list">
+    <div className="Itinerary itinerary-grid">
+      <div className="itinerary-header">
+        <h1>ITINERARY</h1>
+      </div>
+      <div className="itinerary-destination-list itinerary-card">
         <h2>DESTINATION</h2>
-        {destinationList.map(
+        <span>SORT BY DATE</span>
+
+        {props.destinationList.map(
           (destination, index) =>
             Object.keys(destination).length > 0 && (
               <div key={index} className="destination-list-item">
                 <p onClick={fetchWeatherDataHandler}>
                   {destination.city} {destination.country}
                 </p>
-                <span>
-                  <span>{destination.dateFrom}</span>
-                  <span>{destination.dateTo}</span>
-                </span>
+                <div>
+                  <p>{destination.dateFrom}</p>
+                  <p>{destination.dateTo}</p>
+                </div>
+
+                <div className="destination-controls">
+                  <span className="material-symbols-outlined">edit</span>
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={() => deleteCityHandler(index)}
+                  >
+                    delete
+                  </span>
+                </div>
               </div>
             )
         )}
       </div>
 
-      <div className="weather-info">
-        {Object.keys(cityPrevWeatherData).length > 0 && (
+      <div className="weather-info itinerary-card">
+        {Object.keys(cityPrevWeatherData).length > 0 ? (
           <div>
             <h3>{citySelected.city}'s </h3>
             <h2>Average Weather Last Year</h2>
@@ -85,15 +108,17 @@ const Itinerary = (props) => {
               {cityPrevWeatherData.reduce((a, b) => a + b, 0) /
                 cityPrevWeatherData.length}
             </p>
+            <h4>AVERAGE</h4>
+            <h4>
+              {citySelected.dateFrom} - {citySelected.dateTo}
+            </h4>
           </div>
+        ) : (
+          <h2>Average Weather Last Year</h2>
         )}
-        <h4>AVERAGE</h4>
-        <h4>
-          {citySelected.dateFrom} - {citySelected.dateTo}
-        </h4>
       </div>
 
-      <div className="clothes-to-pack-list">
+      <div className="clothes-to-pack-list itinerary-card">
         <h2>CLOTHES TO PACK</h2>
       </div>
     </div>
