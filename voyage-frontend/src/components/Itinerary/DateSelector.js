@@ -1,4 +1,4 @@
-import { today, next365Days } from '../../../date.js';
+import { today, next365Days } from '../../date.js';
 
 const DateSelector = (props) => {
   return (
@@ -9,7 +9,7 @@ const DateSelector = (props) => {
         type="date"
         min={today}
         onChange={props.onDateFromChange}
-        value={props.destinationData.dateFrom}
+        value={props.selectedDateFrom}
       />
       <label>TO</label>
       <input
@@ -17,7 +17,7 @@ const DateSelector = (props) => {
         min={props.destinationData.dateFrom}
         max={next365Days}
         onChange={props.onDateToChange}
-        value={props.destinationData.dateTo}
+        value={props.selectedDateTo}
       />
     </div>
   );

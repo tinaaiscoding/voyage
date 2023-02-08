@@ -1,12 +1,14 @@
-import React from 'react';
+import { React, useState } from 'react';
 import Modal from '../UI/Modal';
-import Countries from '../AddDestination/AddDestinationForm/Countries';
-import Cities from '../AddDestination/AddDestinationForm/Cities';
-import DateSelector from '../AddDestination/AddDestinationForm/DateSelector';
+import Countries from './Countries';
+import Cities from './Cities';
+import DateSelector from './DateSelector';
 
-import './EditCityModal.scss'
+import './EditCityModal.scss';
 
 const EditCityModal = (props) => {
+  const [editList, setEditList] = useState(props.destinationList);
+
   const countryChangeHandler = (country) => {
     props.setDestinationData((prevState) => {
       return {
@@ -45,26 +47,30 @@ const EditCityModal = (props) => {
 
   return (
     <Modal id="Edit-City-Modal">
-         <span
-          className="material-symbols-outlined"
-          onClick={props.onModalClose}
-        >
-          close
-        </span>
-      <h2>Edit City</h2>
-      <Countries
-        onSelectedCountry={countryChangeHandler}
-        selectedCountry={props.country}
-      />
-      <Cities onSelectCity={cityChangeHandler} selectedCity={props.city} />
-      <DateSelector
-        onDateFromChange={dateFromChangeHandler}
-        onDateToChange={dateToChangeHandler}
-        destinationData={props.destinationData}
-        setDestinationData={props.setDestinationData}
-      />
+      <span className="material-symbols-outlined" onClick={props.onModalClose}>
+        close
+      </span>
+      <form className="Edit-Destination-Form">
+        <h2>Edit City</h2>
+        <Countries
+          onSelectedCountry={countryChangeHandler}
+          selectedCountry={props.destinationList[props.index].country}
+        />
+        <Cities
+          onSelectCity={cityChangeHandler}
+          selectedCity={props.destinationList[props.index].city}
+        />
+        <DateSelector
+          onDateFromChange={dateFromChangeHandler}
+          onDateToChange={dateToChangeHandler}
+          destinationData={props.destinationData}
+          setDestinationData={props.setDestinationData}
+          selectedDateFrom={props.destinationList[props.index].dateFrom}
+          selectedDateTo={props.destinationList[props.index].dateTo}
+        />
 
-      <button type="submit">EDIT</button>
+        <button type="submit">EDIT</button>
+      </form>
     </Modal>
   );
 };

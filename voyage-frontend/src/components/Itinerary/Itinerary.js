@@ -68,11 +68,18 @@ const Itinerary = (props) => {
     props.setDestinationList(remainingCities);
   };
 
-  const renderEditModalHandler = () => {
+  const renderEditModalHandler = (indexOfCity) => {
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        index: indexOfCity,
+      };
+    });
     setDisplayEditModal(true);
   };
 
   const closeEditModalHandler = () => {
+
     setDisplayEditModal(false);
   };
 
@@ -100,7 +107,7 @@ const Itinerary = (props) => {
                 <div className="destination-controls">
                   <span
                     className="material-symbols-outlined"
-                    onClick={renderEditModalHandler}
+                    onClick={() => renderEditModalHandler(index)}
                   >
                     edit
                   </span>
@@ -114,12 +121,24 @@ const Itinerary = (props) => {
               </div>
             )
         )}
+        {displayEditModal && (
+          <EditCityModal
+            onModalClose={closeEditModalHandler}
+            destinationData={props.destinationData}
+            setDestinationData={props.setDestinationData}
+            destinationList={props.destinationList}
+            setDestinationList={props.setDestinationList}
+            index={citySelected.index}
+          />
+        )}
       </div>
 
       <div className="weather-info itinerary-card">
         {Object.keys(cityPrevWeatherData).length > 0 ? (
           <div>
-            <h3>{citySelected.city}, {citySelected.country}</h3>
+            <h3>
+              {citySelected.city}, {citySelected.country}
+            </h3>
             <h2>Average Weather Last Year</h2>
             <p className="last-year-avg-temp">
               {cityPrevWeatherData.reduce((a, b) => a + b, 0) /
@@ -138,17 +157,6 @@ const Itinerary = (props) => {
       <div className="clothes-to-pack-list itinerary-card">
         <h2>CLOTHES TO PACK</h2>
       </div>
-
-      {displayEditModal && (
-        <EditCityModal
-          onModalClose={closeEditModalHandler}
-          destinationData={props.destinationData}
-          setDestinationData={props.setDestinationData}
-          destinationList={props.destinationList}
-          setDestinationList={props.setDestinationList}
-          citySelected={citySelected}
-        />
-      )}
     </div>
   );
 };
