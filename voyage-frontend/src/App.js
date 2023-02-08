@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Home from './components/Home';
 import AddDestination from './components/AddDestination/AddDestination';
 import Itinerary from './components/Itinerary/Itinerary';
+import Map from './components/Map/Map'
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -56,6 +57,7 @@ function App() {
             />
           }
         />
+         <Route path="/map" element={<Map />} />
       </Routes>
     </div>
   );
