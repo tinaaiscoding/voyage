@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Home from './components/Home';
 import AddDestination from './components/AddDestination/AddDestination';
-import Itinerary from './components/Itinerary';
+import Itinerary from './components/Itinerary/Itinerary';
 
 import { Routes, Route, Link } from 'react-router-dom';
 

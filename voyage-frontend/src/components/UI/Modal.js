@@ -1,13 +1,16 @@
-import './Modal.scss'
+import './Modal.scss';
 
 const Modal = (props) => {
-  const classes = 'modal ' + (props.className? props.className : '')
+  const classes = 'modal ' + (props.className ? props.className : '');
 
   return (
-    <div className={classes} id={props.id}>
-      {props.children}
+    <div>
+      <div className="visible" id="backdrop"></div>
+      <div className={classes} id={props.id}>
+        {props.children}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

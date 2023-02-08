@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import { getGeoLocation, getWeather } from '../fetch/weather';
+import { useState } from 'react';
+import { getGeoLocation, getWeather } from '../../fetch/weather';
+import EditCityModal from './EditCityModal';
 
 import './Itinerary.scss';
 
 const Itinerary = (props) => {
-  const [destinationList, setDestinationList] = useState([]);
   const [citySelected, setCitySelected] = useState({});
   const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
+  const [displayEditModal, setDisplayEditModal] = useState(false);
 
   // useEffect(() => {
   //   setDestinationList(props.destinationList);
@@ -64,6 +65,14 @@ const Itinerary = (props) => {
     props.setDestinationList(remainingCities);
   };
 
+  const renderEditModalHandler = () => {
+    setDisplayEditModal(true);
+  };
+
+  const closeEditModalHandler = () => {
+    setDisplayEditModal(false);
+  };
+
   return (
     <div className="Itinerary itinerary-grid">
       <div className="itinerary-header">
@@ -77,7 +86,7 @@ const Itinerary = (props) => {
           (destination, index) =>
             Object.keys(destination).length > 0 && (
               <div key={index} className="destination-list-item">
-                <p onClick={fetchWeatherDataHandler}>
+                <p contenteditable="true" onClick={fetchWeatherDataHandler}>
                   {destination.city} {destination.country}
                 </p>
                 <div>
@@ -86,7 +95,12 @@ const Itinerary = (props) => {
                 </div>
 
                 <div className="destination-controls">
-                  <span className="material-symbols-outlined">edit</span>
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={renderEditModalHandler}
+                  >
+                    edit
+                  </span>
                   <span
                     className="material-symbols-outlined"
                     onClick={() => deleteCityHandler(index)}
@@ -121,6 +135,16 @@ const Itinerary = (props) => {
       <div className="clothes-to-pack-list itinerary-card">
         <h2>CLOTHES TO PACK</h2>
       </div>
+
+      {displayEditModal && (
+        <EditCityModal
+          onModalClose={closeEditModalHandler}
+          destinationData={props.destinationData}
+          setDestinationData={props.setDestinationData}
+          destinationList={props.destinationList}
+          setDestinationList={props.setDestinationList}
+        />
+      )}
     </div>
   );
 };

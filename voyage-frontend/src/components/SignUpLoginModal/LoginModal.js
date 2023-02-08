@@ -22,7 +22,7 @@ const LogInModal = (props) => {
 
   const loginNavSelected = {
     backgroundColor: 'rgb(255, 140, 0)',
-    color: 'rgb(255, 240, 222)',
+    color: 'rgb(255, 240, 222);',
     fontWeight: '700',
   };
 
