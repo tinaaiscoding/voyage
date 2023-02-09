@@ -1,7 +1,7 @@
 # :airplane: Vogage - Itinerary planning app
 Project 4 with General Assembly
 
-## :star: View my project [here]()! :eyes:
+## :star: View my project [here](http://tinas-voyage.surge.sh/)! :eyes:
 
 ## :page_with_curl: About
 
