@@ -19,6 +19,17 @@
     margin: 10px;
     text-align: left;
   }
+
+  h1 {
+    color: rgb(84, 103, 140);
+    font-size: 3rem;
+    margin-top: 50px;
+    padding: 0;
+    margin-bottom: 0;
+    margin-left: 400px;
+    font-family: 'Paytone One', sans-serif;
+    letter-spacing: 3px;
+  }
 }
 
 .add-destination-grid {
@@ -50,6 +61,7 @@
       margin: 0;
       padding: 15px;
       text-align: center;
+      letter-spacing: 2px;
     }
   }
 

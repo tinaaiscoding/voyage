@@ -3,7 +3,7 @@ import { today, next365Days } from '../../../date.js';
 const DateSelector = (props) => {
   return (
     <div className="Date-Selector">
-      <p>DATES:</p>
+      <p>DATES</p>
       <label>FROM</label>
       <input
         type="date"

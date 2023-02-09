@@ -44,7 +44,7 @@ const Itinerary = (props) => {
     setCitySelected((prevState) => {
       return {
         ...prevState,
-        state: location.split(', ')[2],
+        state: location.split(', ')[1],
       };
     });
 

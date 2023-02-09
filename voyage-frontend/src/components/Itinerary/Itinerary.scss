@@ -3,6 +3,7 @@
   background-size: cover;
   // background-repeat: repeat-x repeat-y;
   height: 100vh;
+  position: relative;
 
   p {
     letter-spacing: 2px;
@@ -10,6 +11,17 @@
     font-weight: 700;
     margin-bottom: 2px;
     text-align: left;
+  }
+
+  h1 {
+    color: rgb(94, 55, 103);
+    font-size: 3rem;
+    margin-top: 20px;
+    padding: 0;
+    margin-bottom: 0px;
+    margin-left: 50px;
+    font-family: 'Paytone One', sans-serif;
+    letter-spacing: 3px;
   }
 }
 .itinerary-grid {
@@ -70,6 +82,7 @@
       margin: 0;
       padding: 15px;
       color: rgb(255, 255, 255);
+      letter-spacing: 2px;
     }
   }
 
@@ -82,12 +95,37 @@
   }
 }
 
-.Avg-Weather { 
+.Avg-Weather {
   text-align: center;
   color: white;
   .last-year-avg-temp {
-
     font-size: 7rem;
     font-weight: 700;
+  }
+}
+
+.clothes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'img1 img2 img3'
+    'img4 img5 img6'
+    'img7 img8 img9';
+
+  padding-bottom: 21px;
+}
+
+.Clothes {
+  .content {
+    background-color: rgba(255, 255, 255, 0.903);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    img {
+      width: 80px;
+      margin: 15px auto;
+    }
   }
 }

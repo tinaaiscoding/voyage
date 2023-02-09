@@ -111,42 +111,47 @@ const EditCityModal = (props) => {
       <span className="material-symbols-outlined" onClick={props.onModalClose}>
         close
       </span>
-      <form className="Edit-Destination-Form" onSubmit={editHandler}>
+      <div className="header">
         <h2>Edit City</h2>
-        <Countries
-          onSelectedCountry={countryChangeHandler}
-          selectedCountry={editData.country}
-          countryList={props.countryList}
-          setCountryList={props.setCountryList}
-        />
-        <States
-          onSelectState={stateChangeHandler}
-          selectedState={editData.state}
-          stateList={props.stateList}
-          countryCode={countryCode}
-          editStateList={editStateList}
-          setEditStateList={setEditStateList}
-        />
-        <Cities
-          onSelectCity={cityChangeHandler}
-          selectedCity={editData.city}
-          editData={editData}
-          countryCode={countryCode}
-          stateCode={stateCode}
-          editCityList={editCityList}
-          setEditCityList={setEditCityList}
-        />
-        <DateSelector
-          onDateFromChange={dateFromChangeHandler}
-          onDateToChange={dateToChangeHandler}
-          destinationData={props.destinationData}
-          setDestinationData={props.setDestinationData}
-          selectedDateFrom={editData.dateFrom}
-          selectedDateTo={editData.dateTo}
-        />
+      </div>
+      
+      <div className="content">
+        <form className="Edit-Destination-Form" onSubmit={editHandler}>
+          <Countries
+            onSelectedCountry={countryChangeHandler}
+            selectedCountry={editData.country}
+            countryList={props.countryList}
+            setCountryList={props.setCountryList}
+          />
+          <States
+            onSelectState={stateChangeHandler}
+            selectedState={editData.state}
+            stateList={props.stateList}
+            countryCode={countryCode}
+            editStateList={editStateList}
+            setEditStateList={setEditStateList}
+          />
+          <Cities
+            onSelectCity={cityChangeHandler}
+            selectedCity={editData.city}
+            editData={editData}
+            countryCode={countryCode}
+            stateCode={stateCode}
+            editCityList={editCityList}
+            setEditCityList={setEditCityList}
+          />
+          <DateSelector
+            onDateFromChange={dateFromChangeHandler}
+            onDateToChange={dateToChangeHandler}
+            destinationData={props.destinationData}
+            setDestinationData={props.setDestinationData}
+            selectedDateFrom={editData.dateFrom}
+            selectedDateTo={editData.dateTo}
+          />
 
-        <button type="submit">EDIT</button>
-      </form>
+          <button type="submit">EDIT</button>
+        </form>
+      </div>
     </Modal>
   );
 };
