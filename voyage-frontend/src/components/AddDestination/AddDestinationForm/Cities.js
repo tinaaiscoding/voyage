@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-
 import fetchCities from '../../../db/fetchCities';
+
+import './AddDestinationForm.scss'
 
 const Cities = (props) => {
   useEffect(() => {

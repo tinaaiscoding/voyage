@@ -1,6 +1,24 @@
 .Add-Destination {
-  background-color: rgb(226, 251, 255);
+  background: url(../../images/compBg/background-6a.jpg);
+  background-size: cover;
+  // background-repeat: repeat-x repeat-y;
   height: 100vh;
+
+  p {
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-align: left;
+  }
+
+  h2 {
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    margin: 10px;
+    text-align: left;
+  }
 }
 
 .add-destination-grid {
@@ -18,24 +36,31 @@
 }
 .Add-Destination-List {
   grid-area: dest;
-  width: 60%;
-}
-div.Add-Destination-Form {
-  grid-area: form;
-  padding: 30px 50px;
-  width: 60%;
+  width: 40%;
+  height: 70%;
+  justify-items: start;
 
-  select,
-  input,
-  button {
-    padding: 5px;
-    margin: 10px;
+  div.header {
+    background-color: rgb(175, 4, 81);
+    padding: 0;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    h2 {
+      margin: 0;
+      padding: 15px;
+     
+    }
+  }
+
+  div.content {
+    padding: 15px 50px;
   }
 }
 
 .add-destination-card {
-  background-color: white;
+  background-color: #7f455db5;
+  border: 1px solid rgb(255, 107, 201);
   border-radius: 20px;
-  margin: 20px;
-  box-shadow: 6px 5px 4px 0px grey;
+  margin: 80px;
 }

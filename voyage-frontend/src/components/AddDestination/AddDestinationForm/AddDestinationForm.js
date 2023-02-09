@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Countries from './Countries.js';
 import States from './States.js';
@@ -9,7 +9,6 @@ import SeasonFilter from './SeasonFilter.js';
 import { getGeoLocation } from '../../../db/fetchWeather.js';
 
 import './AddDestinationForm.scss';
-import { useEffect } from 'react';
 
 const AddDestinationForm = (props) => {
   const [countryCode, setCountryCode] = useState('');
@@ -136,6 +135,7 @@ const AddDestinationForm = (props) => {
   return (
     <div className="Add-Destination-Form add-destination-card">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
+        <p>SELECT YOUR DESTINATION</p>
         <Countries
           onSelectedCountry={countryChangeHandler}
           selectedCountry={props.destinationData.country}
@@ -168,7 +168,7 @@ const AddDestinationForm = (props) => {
         />
         <SeasonFilter onFilterToggle={seasonChangeHandler} />
 
-        <button type="submit">ADD</button>
+        <button className="button-80" type="submit">ADD</button>
       </form>
     </div>
   );

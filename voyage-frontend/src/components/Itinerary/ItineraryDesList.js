@@ -5,7 +5,7 @@ const ItineraryDesList = (props) => {
   return (
     <div className='Itinerary-Des-List'>
         <h2>DESTINATION</h2>
-        <span>SORT BY DATE</span>
+        <button>SORT BY DATE</button>
 
         {props.destinationList.map(
           (destination, index) =>

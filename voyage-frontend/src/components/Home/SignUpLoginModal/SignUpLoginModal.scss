@@ -41,6 +41,11 @@ label {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
+
+  .button-80:not(:disabled):hover {
+    border: 1px solid #ff6b08e6;
+    color: #ff6600;
+  }
 }
 
 #Login-Modal {

@@ -1,6 +1,18 @@
 .Itinerary {
-  background-color: rgb(226, 251, 255);
+  background: url(../../images/compBg/background-6b.jpg);
+  background-size: cover;
+  // background-repeat: repeat-x repeat-y;
   height: 100vh;
+
+  p {
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-align: left;
+  }
+
+ 
 }
 .itinerary-grid {
   display: grid; 
@@ -19,7 +31,6 @@
 
 .itinerary-destination-list {
   grid-area: dest;
-
 }
 
 .weather-info {
@@ -31,8 +42,9 @@
 }
 
 .itinerary-card {
-  background-color: white;
+  background-color: #8071a298;
+  border: 1px solid rgb(184, 156, 233);
   border-radius: 20px;
   margin: 20px;
-  box-shadow: 6px 5px 4px 0px grey;
+  padding: 15px 50px;
 }
