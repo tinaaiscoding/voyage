@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
 import EditCityModal from './EditCityModal/EditCityModal';
 
 const ItineraryDesList = (props) => {
   return (
-    <div className='Itinerary-Des-List'>
+    <div className="Itinerary-Des-List">
+      <div className="header">
         <h2>DESTINATION</h2>
-        <button>SORT BY DATE</button>
+        {/* <button>SORT BY DATE</button> */}
+      </div>
 
+      <div className="content">
         {props.destinationList.map(
           (destination, index) =>
             Object.keys(destination).length > 0 && (
@@ -14,7 +17,7 @@ const ItineraryDesList = (props) => {
                 <p onClick={props.fetchWeatherDataHandler}>
                   {destination.city}, {destination.state}, {destination.country}
                 </p>
-                <div>
+                <div className="dates">
                   <p>{destination.dateFrom}</p>
                   <p>{destination.dateTo}</p>
                 </div>
@@ -52,8 +55,9 @@ const ItineraryDesList = (props) => {
             setCityList={props.setCityList}
           />
         )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ItineraryDesList
+export default ItineraryDesList;
