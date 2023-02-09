@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 
 const AddDestinationForm = (props) => {
   const [countryCode, setCountryCode] = useState('');
+  const [stateCode, setStateCode] = useState('');
 
   const countryChangeHandler = (country) => {
     props.setDestinationData((prevState) => {
@@ -35,6 +36,12 @@ const AddDestinationForm = (props) => {
         ...prevState,
         state: state,
       };
+    });
+
+    props.stateList.forEach((stateItem) => {
+      if (stateItem.name === state) {
+        setStateCode(stateItem.iso2);
+      }
     });
   };
 
@@ -148,7 +155,7 @@ const AddDestinationForm = (props) => {
           onSelectCity={cityChangeHandler}
           selectedCity={props.destinationData.city}
           selectedCountryCode={countryCode}
-          setCountryList={props.setCountryList}
+          selectedStateCode={stateCode}
           cityList={props.cityList}
           setCityList={props.setCityList}
         />

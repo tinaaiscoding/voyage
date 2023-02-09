@@ -1,4 +1,4 @@
-const fetchCities = async (countryCode) => {
+const fetchCities = async (countryCode, stateCode) => {
   var headers = new Headers();
   headers.append(
     'X-CSCAPI-KEY',
@@ -12,11 +12,11 @@ const fetchCities = async (countryCode) => {
   };
 
   const res = await fetch(
-    `https://api.countrystatecity.in/v1/countries/${countryCode}/cities`,
+    `https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`,
     requestOptions
   );
   const citiesList = await res.json();
-  
+
   return citiesList;
 };
 

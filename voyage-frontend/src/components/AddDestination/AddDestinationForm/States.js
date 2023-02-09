@@ -11,7 +11,7 @@ const States = (props) => {
 
   const storeStateHandler = (event) => {
     const stateSelected = event.target.value;
-
+    
     props.onSelectState(stateSelected);
   };
 

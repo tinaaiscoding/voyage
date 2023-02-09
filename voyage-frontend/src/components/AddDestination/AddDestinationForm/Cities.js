@@ -1,19 +1,21 @@
 import { useEffect } from 'react';
 
-import fetchCities from '../../../db/fetchCities'
+import fetchCities from '../../../db/fetchCities';
 
 const Cities = (props) => {
   useEffect(() => {
-    fetchCities(props.selectedCountryCode).then((res) => {
-      props.setCityList(res);
-    });
-  }, [props.selectedCountryCode]);
+    fetchCities(props.selectedCountryCode, props.selectedStateCode).then(
+      (res) => {
+        props.setCityList(res);
+      }
+    );
+  }, [props.selectedCountryCode, props.selectedStateCode]);
 
   const storeCityHandler = (event) => {
-    const citySelected = event.target.value
-    
-    props.onSelectCity(citySelected)
-  }
+    const citySelected = event.target.value;
+
+    props.onSelectCity(citySelected);
+  };
 
   return (
     <div className="Cities">
@@ -22,12 +24,19 @@ const Cities = (props) => {
         form="Add-Destination-Form"
         onChange={storeCityHandler}
         value={props.selectedCity}
+        // required
       >
-        <option>City</option>
-        <option value="Melbourne">Melbourne</option>
-        <option value="London">London</option>
-        <option value="Seattle">Seattle</option>
-        <option value="Rio De Janeiro">Rio De Janeiro</option>
+        <option value="" disabled hidden>
+          City
+        </option>
+        {props.cityList.length > 0 &&
+          props.cityList.map((city, index) => {
+            return (
+              <option key={index} value={city.name}>
+                {city.name}
+              </option>
+            );
+          })}
       </select>
     </div>
   );
