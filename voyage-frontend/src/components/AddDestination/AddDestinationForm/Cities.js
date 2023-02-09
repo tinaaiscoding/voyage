@@ -9,7 +9,7 @@ const Cities = (props) => {
         props.setCityList(res);
       }
     );
-  }, [props.selectedCountryCode, props.selectedStateCode]);
+  }, [props.selectedStateCode]);
 
   const storeCityHandler = (event) => {
     const citySelected = event.target.value;

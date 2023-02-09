@@ -1,11 +1,9 @@
-import React from 'react';
-
 const Countries = (props) => {
   const storeCountryHandler = (event) => {
-    const countrySelected = event.target.value
-    
-    props.onSelectedCountry(countrySelected)
-  }
+    const countrySelected = event.target.value;
+
+    props.onSelectedCountry(countrySelected);
+  };
 
   return (
     <div className="Countries">

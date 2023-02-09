@@ -46,6 +46,10 @@ const ItineraryDesList = (props) => {
             index={props.citySelected.index}
             countryList={props.countryList}
             setCountryList={props.setCountryList}
+            stateList={props.stateList}
+            setStateList={props.setStateList}
+            cityList={props.cityList}
+            setCityList={props.setCityList}
           />
         )}
     </div>

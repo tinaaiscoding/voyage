@@ -117,6 +117,10 @@ const Itinerary = (props) => {
           fetchWeatherDataHandler={fetchWeatherDataHandler}
           countryList={props.countryList}
           setCountryList={props.setCountryList}
+          stateList={props.stateList}
+          setStateList={props.setStateList}
+          cityList={props.cityList}
+          setCityList={props.setCityList}
         />
       </div>
 

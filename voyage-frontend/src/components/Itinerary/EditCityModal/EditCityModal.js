@@ -1,19 +1,44 @@
 import { React, useState } from 'react';
 import Modal from '../../UI/Modal';
 import Countries from './Countries';
+import States from './IStates';
 import Cities from './Cities';
 import DateSelector from './DateSelector';
 
 import './EditCityModal.scss';
 
 const EditCityModal = (props) => {
+  let initialCountryCode = ''
+  props.countryList.forEach((countryItem) => {
+    if (countryItem.name === props.destinationList[props.index].country) {
+      initialCountryCode = countryItem.iso2
+    }
+  });
+
   const [editData, setEditData] = useState(props.destinationList[props.index]);
+  const [countryCode, setCountryCode] = useState(initialCountryCode);
+  const [stateCode, setStateCode] = useState('');
 
   const countryChangeHandler = (country) => {
     setEditData((prevState) => {
       return {
         ...prevState,
         country: country,
+      };
+    });
+
+    props.countryList.forEach((countryItem) => {
+      if (countryItem.name === country) {
+        setCountryCode(countryItem.iso2);
+      }
+    });
+  };
+
+  const stateChangeHandler = (state) => {
+    setEditData((prevState) => {
+      return {
+        ...prevState,
+        state: state,
       };
     });
   };
@@ -67,7 +92,20 @@ const EditCityModal = (props) => {
           countryList={props.countryList}
           setCountryList={props.setCountryList}
         />
-        <Cities onSelectCity={cityChangeHandler} selectedCity={editData.city} />
+        <States
+          onSelectState={stateChangeHandler}
+          selectedState={editData.state}
+          stateList={props.stateList}
+          countryCode={countryCode}
+        />
+        <Cities
+          onSelectCity={cityChangeHandler}
+          selectedCity={editData.city}
+          cityList={props.cityList}
+          setCityList={props.setCityList}
+          countryCode={countryCode}
+          stateCode={stateCode}
+        />
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}

@@ -15,11 +15,13 @@ const Cities = (props) => {
         onChange={storeCityHandler}
         value={props.selectedCity}
       >
-        <option>CITY</option>
-        <option value="Melbourne">Melbourne</option>
-        <option value="London">London</option>
-        <option value="Seattle">Seattle</option>
-        <option value="Rio De Janeiro">Rio De Janeiro</option>
+        {props.cityList.map((city, index) => {
+          return (
+            <option key={index} value={city.name}>
+              {city.name}
+            </option>
+          );
+        })}
       </select>
     </div>
   );
