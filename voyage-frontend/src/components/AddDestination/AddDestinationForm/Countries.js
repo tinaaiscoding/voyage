@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 
-import fetchCountries from '../../../db/countries';
+import fetchCountries from '../../../db/fetchCountries';
 
 const Countries = (props) => {
-  const [countryList, setCountryList] = useState([]);
-
   useEffect(() => {
     fetchCountries().then((res) => {
-      setCountryList(res);
+      props.setCountryList(res);
     });
   }, []);
 
@@ -24,22 +22,18 @@ const Countries = (props) => {
         form="Add-Destination-Form"
         onChange={storeCountryHandler}
         value={props.selectedCountry}
+        // required
       >
-        {countryList.map((country, index) => {
+        <option value="" disabled hidden>
+          Country
+        </option>
+        {props.countryList.map((country, index) => {
           return (
             <option key={index} value={country.name}>
               {country.name}
             </option>
           );
         })}
-
-        {/* <option>COUNTRY</option>
-        <option value="Australia">Australia</option>
-        <option value="United Kingdom">United Kingdom</option>
-        <option value="United States of America">
-          United States of America
-        </option>
-        <option value="Brazil">Brazil</option> */}
       </select>
     </div>
   );

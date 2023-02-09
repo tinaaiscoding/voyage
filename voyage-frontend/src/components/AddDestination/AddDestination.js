@@ -19,6 +19,12 @@ const AddDestination = (props) => {
         setMarkerInfo={props.setMarkerInfo}
         markerList={props.markerList}
         setMarkerList={props.setMarkerList}
+        countryList={props.countryList}
+        setCountryList={props.setCountryList}
+        stateList={props.stateList}
+        setStateList={props.setStateList}
+        cityList={props.cityList}
+        setCityList={props.setCityList}
       />
       <AddDestinationList
         destinationData={props.destinationData}

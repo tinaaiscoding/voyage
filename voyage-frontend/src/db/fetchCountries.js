@@ -11,11 +11,13 @@ const fetchCountries = async () => {
     redirect: 'follow',
   };
 
-  const res = await fetch('https://api.countrystatecity.in/v1/countries', requestOptions)
+  const res = await fetch(
+    'https://api.countrystatecity.in/v1/countries',
+    requestOptions
+  );
   const countriesList = await res.json();
-  const countries = countriesList
 
-  return countries;
+  return countriesList;
 };
 
 export default fetchCountries;

@@ -1,19 +1,39 @@
+import { useState } from 'react';
+
 import Countries from './Countries.js';
+import States from './States.js';
 import Cities from './Cities.js';
 import DateSelector from './DateSelector.js';
 import SeasonFilter from './SeasonFilter.js';
 
-import { getGeoLocation } from '../../../fetch/weather.js';
+import { getGeoLocation } from '../../../db/fetchWeather.js';
 
 import './AddDestinationForm.scss';
 import { useEffect } from 'react';
 
 const AddDestinationForm = (props) => {
+  const [countryCode, setCountryCode] = useState('');
+
   const countryChangeHandler = (country) => {
     props.setDestinationData((prevState) => {
       return {
         ...prevState,
         country: country,
+      };
+    });
+
+    props.countryList.forEach((countryItem) => {
+      if (countryItem.name === country) {
+        setCountryCode(countryItem.iso2);
+      }
+    });
+  };
+
+  const stateChangeHandler = (state) => {
+    props.setDestinationData((prevState) => {
+      return {
+        ...prevState,
+        state: state,
       };
     });
   };
@@ -95,7 +115,6 @@ const AddDestinationForm = (props) => {
     getCoordinates();
   }, [props.destinationData]);
 
-
   useEffect(() => {
     if (
       props.destinationData.country === '' &&
@@ -113,11 +132,27 @@ const AddDestinationForm = (props) => {
         <Countries
           onSelectedCountry={countryChangeHandler}
           selectedCountry={props.destinationData.country}
+          countryList={props.countryList}
+          setCountryList={props.setCountryList}
         />
+        <States
+          onSelectState={stateChangeHandler}
+          selectedState={props.destinationData.state}
+          selectedCountryCode={countryCode}
+          setCountryList={props.setCountryList}
+          stateList={props.stateList}
+          setStateList={props.setStateList}
+        />
+
         <Cities
           onSelectCity={cityChangeHandler}
           selectedCity={props.destinationData.city}
+          selectedCountryCode={countryCode}
+          setCountryList={props.setCountryList}
+          cityList={props.cityList}
+          setCityList={props.setCityList}
         />
+
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}

@@ -12,7 +12,7 @@ const ItineraryDesList = (props) => {
             Object.keys(destination).length > 0 && (
               <div key={index} className="destination-list-item">
                 <p onClick={props.fetchWeatherDataHandler}>
-                  {destination.city}, {destination.country}
+                  {destination.city}, {destination.state}, {destination.country}
                 </p>
                 <div>
                   <p>{destination.dateFrom}</p>
@@ -44,6 +44,8 @@ const ItineraryDesList = (props) => {
             destinationList={props.destinationList}
             setDestinationList={props.setDestinationList}
             index={props.citySelected.index}
+            countryList={props.countryList}
+            setCountryList={props.setCountryList}
           />
         )}
     </div>

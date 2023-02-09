@@ -64,6 +64,8 @@ const EditCityModal = (props) => {
         <Countries
           onSelectedCountry={countryChangeHandler}
           selectedCountry={editData.country}
+          countryList={props.countryList}
+          setCountryList={props.setCountryList}
         />
         <Cities onSelectCity={cityChangeHandler} selectedCity={editData.city} />
         <DateSelector

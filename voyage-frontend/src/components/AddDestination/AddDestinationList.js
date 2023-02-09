@@ -9,7 +9,7 @@ const AddDestinationList = (props) => {
         (destination, index) =>
           Object.keys(destination).length > 0 && (
             <p key={index}>
-              {destination.city} {destination.country}
+              {destination.city}, {destination.state}, {destination.country}
             </p>
           )
       )}

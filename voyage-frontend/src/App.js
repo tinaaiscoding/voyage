@@ -12,6 +12,7 @@ import './App.scss';
 function App() {
   const [destinationData, setDestinationData] = useState({
     country: '',
+    state: '',
     city: '',
     dateFrom: '',
     dateTo: '',
@@ -25,6 +26,9 @@ function App() {
     coordinates: [],
   });
   const [markerList, setMarkerList] = useState([]);
+  const [countryList, setCountryList] = useState([]);
+  const [stateList, setStateList] = useState([]);
+  const [cityList, setCityList] = useState([]);
 
   return (
     <div className="App">
@@ -49,6 +53,12 @@ function App() {
               setMarkerInfo={setMarkerInfo}
               markerList={markerList}
               setMarkerList={setMarkerList}
+              countryList={countryList}
+              setCountryList={setCountryList}
+              stateList={stateList}
+              setStateList={setStateList}
+              cityList={cityList}
+              setCityList={setCityList}
             />
           }
         />
@@ -62,6 +72,12 @@ function App() {
               setDestinationList={setDestinationList}
               markerInfo={markerInfo}
               setMarkerInfo={setMarkerInfo}
+              countryList={countryList}
+              setCountryList={setCountryList}
+              stateList={stateList}
+              setStateList={setStateList}
+              cityList={cityList}
+              setCityList={setCityList}
             />
           }
         />

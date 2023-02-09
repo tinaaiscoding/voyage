@@ -5,9 +5,9 @@ const AvgWeather = (props) => {
     <div className='Avg-Weather'>
         {Object.keys(props.cityPrevWeatherData).length > 0 ? (
           <div>
-            <h3>
-              {props.citySelected.city}, {props.citySelected.country}
-            </h3>
+            <h4>
+              {props.citySelected.city}, {props.citySelected.country}, {props.citySelected.country}
+            </h4>
             <h2>Average Weather Last Year</h2>
             <p className="last-year-avg-temp">
               {props.cityPrevWeatherData.reduce((a, b) => a + b, 0) /

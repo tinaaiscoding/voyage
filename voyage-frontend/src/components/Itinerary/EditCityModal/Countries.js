@@ -15,11 +15,13 @@ const Countries = (props) => {
         onChange={storeCountryHandler}
         value={props.selectedCountry}
       >
-        <option>COUNTRY</option>
-        <option value="Australia">Australia</option>
-        <option value="United Kingdom">United Kingdom</option>
-        <option value="United States of America">United States of America</option>
-        <option value="Brazil">Brazil</option>
+        {props.countryList.map((country, index) => {
+          return (
+            <option key={index} value={country.name}>
+              {country.name}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

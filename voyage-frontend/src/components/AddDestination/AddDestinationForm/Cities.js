@@ -1,6 +1,14 @@
-import React from 'react';
+import { useEffect } from 'react';
+
+import fetchCities from '../../../db/fetchCities'
 
 const Cities = (props) => {
+  useEffect(() => {
+    fetchCities(props.selectedCountryCode).then((res) => {
+      props.setCityList(res);
+    });
+  }, [props.selectedCountryCode]);
+
   const storeCityHandler = (event) => {
     const citySelected = event.target.value
     
@@ -15,7 +23,7 @@ const Cities = (props) => {
         onChange={storeCityHandler}
         value={props.selectedCity}
       >
-        <option>CITY</option>
+        <option>City</option>
         <option value="Melbourne">Melbourne</option>
         <option value="London">London</option>
         <option value="Seattle">Seattle</option>

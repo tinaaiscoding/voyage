@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getGeoLocation, getWeather } from '../../fetch/weather';
+import { getGeoLocation, getWeather } from '../../db/fetchWeather';
 import Clothes from './Clothes';
 import AvgWeather from './AvgWeather';
 import ItineraryDesList from './ItineraryDesList';
@@ -12,7 +12,7 @@ const Itinerary = (props) => {
   const [displayEditModal, setDisplayEditModal] = useState(false);
 
   const fetchWeatherDataHandler = (event) => {
-    const city = event.target.textContent;
+    const location = event.target.textContent;
     const dateSpan = event.target.nextSibling;
 
     let dateFrom = dateSpan.children[0].textContent;
@@ -26,7 +26,7 @@ const Itinerary = (props) => {
     dateTo.splice(0, 1, Number(dateTo[0]) - 1);
     dateTo = dateTo.join('-');
 
-    getGeoLocation(city)
+    getGeoLocation(location)
       .then((geoLocation) =>
         getWeather(geoLocation.lat, geoLocation.lng, dateFrom, dateTo)
       )
@@ -37,14 +37,21 @@ const Itinerary = (props) => {
     setCitySelected((prevState) => {
       return {
         ...prevState,
-        city: city.split(', ')[0],
+        city: location.split(', ')[0],
       };
     });
 
     setCitySelected((prevState) => {
       return {
         ...prevState,
-        country: city.split(', ')[1],
+        state: location.split(', ')[2],
+      };
+    });
+
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        country: location.split(', ')[2],
       };
     });
 
@@ -108,6 +115,8 @@ const Itinerary = (props) => {
           citySelected={citySelected}
           closeEditModalHandler={closeEditModalHandler}
           fetchWeatherDataHandler={fetchWeatherDataHandler}
+          countryList={props.countryList}
+          setCountryList={props.setCountryList}
         />
       </div>
 
