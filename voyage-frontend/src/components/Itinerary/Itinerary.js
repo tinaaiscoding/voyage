@@ -74,16 +74,14 @@ const Itinerary = (props) => {
     const remainingCities = props.destinationList.filter(
       (city, i) => i !== indexOfCity
     );
+    
     props.setDestinationList(remainingCities);
 
-    console.log(props.markerInfo)
-    console.log(indexOfCity)
-    console.log(props.markerList)
-    // const remainingCitiesMarker = props.markerList.filter(
-    //   (city, i) => i !== indexOfCity
-    // );
+    const remainingCitiesMarker = props.markerList.filter(
+      (city, i) => i !== indexOfCity
+    );
 
-    // props.setMarkerList(remainingCitiesMarker);
+    props.setMarkerList(remainingCitiesMarker);
   };
 
   const renderEditModalHandler = (indexOfCity) => {

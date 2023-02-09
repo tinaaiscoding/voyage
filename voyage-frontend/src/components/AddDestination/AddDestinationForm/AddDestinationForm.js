@@ -132,9 +132,6 @@ const AddDestinationForm = (props) => {
     getCoordinates();
   }, [props.destinationData]);
 
-  // useEffect(() => {
-
-  // }, [props.markerInfo]);
 
   return (
     <div className="Add-Destination-Form add-destination-card">

@@ -10,9 +10,6 @@ import {
 import './Map.scss';
 
 const Map = (props) => {
-
-console.log('MAP')
-console.log(props.markerList)
   return (
     <div className="Map">
       <ComposableMap>
