@@ -1,15 +1,15 @@
 import React from 'react';
 
 import './Itinerary.scss'
-import tshirt from '../../images/clothesIcons/t-shirt.png'
-import poloShirt from '../../images/clothesIcons/polo-shirt.png'
-import hoodie from '../../images/clothesIcons/hoodie.png'
-import trousers from '../../images/clothesIcons/trousers.png'
-import jeans from '../../images/clothesIcons/jeans.png'
-import shorts from '../../images/clothesIcons/shorts.png'
-import trainers from '../../images/clothesIcons/trainers.png'
-import flipFlops from '../../images/clothesIcons/flip-flops.png'
-import baseballCap from '../../images/clothesIcons/baseball-cap.png'
+import tshirt from '../../images/clothesIcons/t-shirt1.png'
+import poloShirt from '../../images/clothesIcons/polo-shirt1.png'
+import hoodie from '../../images/clothesIcons/mens-hoodie1.png'
+import trousers from '../../images/clothesIcons/trousers1.png'
+import jeans from '../../images/clothesIcons/jeans1.png'
+import shorts from '../../images/clothesIcons/shorts1.png'
+import trainers from '../../images/clothesIcons/trainers1.png'
+import flipFlops from '../../images/clothesIcons/flip-flops1.png'
+import baseballCap from '../../images/clothesIcons/baseball-cap1.png'
 
 const Clothes = () => {
   return (

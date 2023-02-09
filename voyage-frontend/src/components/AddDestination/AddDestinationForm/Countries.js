@@ -23,7 +23,7 @@ const Countries = (props) => {
         form="Add-Destination-Form"
         onChange={storeCountryHandler}
         value={props.selectedCountry}
-        // required
+        required
       >
         <option value="" disabled hidden>
           Country

@@ -22,7 +22,7 @@ const States = (props) => {
         form="Add-Destination-Form"
         onChange={storeStateHandler}
         value={props.selectedState}
-        // required
+        required
       >
         <option value="" disabled hidden>
           State

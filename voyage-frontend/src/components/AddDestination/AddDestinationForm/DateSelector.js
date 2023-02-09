@@ -12,6 +12,7 @@ const DateSelector = (props) => {
         min={today}
         onChange={props.onDateFromChange}
         value={props.destinationData.dateFrom}
+        required
       />
       <label>TO</label>
       <input
@@ -20,6 +21,7 @@ const DateSelector = (props) => {
         max={next365Days}
         onChange={props.onDateToChange}
         value={props.destinationData.dateTo}
+        required
       />
     </div>
   );

@@ -25,7 +25,7 @@ const Cities = (props) => {
         form="Add-Destination-Form"
         onChange={storeCityHandler}
         value={props.selectedCity}
-        // required
+        required
       >
         <option value="" disabled hidden>
           City
