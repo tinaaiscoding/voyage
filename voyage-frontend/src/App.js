@@ -72,6 +72,8 @@ function App() {
               setDestinationList={setDestinationList}
               markerInfo={markerInfo}
               setMarkerInfo={setMarkerInfo}
+              markerList={markerList}
+              setMarkerList={setMarkerList}
               countryList={countryList}
               setCountryList={setCountryList}
               stateList={stateList}

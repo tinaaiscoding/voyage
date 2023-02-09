@@ -59,7 +59,7 @@ const EditCityModal = (props) => {
       };
     });
 
-    console.log(editData)
+    console.log(editData);
   };
 
   const cityChangeHandler = (city) => {

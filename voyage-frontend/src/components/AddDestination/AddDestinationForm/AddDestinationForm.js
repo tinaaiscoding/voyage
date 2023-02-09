@@ -98,6 +98,7 @@ const AddDestinationForm = (props) => {
 
     props.setDestinationData({
       country: '',
+      state: '',
       city: '',
       dateFrom: '',
       dateTo: '',
@@ -105,6 +106,15 @@ const AddDestinationForm = (props) => {
     });
 
     props.setMarkerInfo({ markerOffset: -8, name: '', coordinates: [] });
+
+    if (
+      props.destinationData.country === '' && props.destinationData.state === '' &&
+      props.destinationData.city === ''
+    ) {
+      console.log('No data to add to marker list');
+    } else {
+      props.setMarkerList([...props.markerList, props.markerInfo]);
+    }
   };
 
   useEffect(() => {
@@ -122,16 +132,9 @@ const AddDestinationForm = (props) => {
     getCoordinates();
   }, [props.destinationData]);
 
-  useEffect(() => {
-    if (
-      props.destinationData.country === '' &&
-      props.destinationData.city === ''
-    ) {
-      console.log('No data to add to marker list');
-    } else {
-      props.setMarkerList((prevState) => [...prevState, props.markerInfo]);
-    }
-  }, [props.markerInfo]);
+  // useEffect(() => {
+
+  // }, [props.markerInfo]);
 
   return (
     <div className="Add-Destination-Form add-destination-card">

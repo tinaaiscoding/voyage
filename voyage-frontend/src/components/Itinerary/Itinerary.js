@@ -78,11 +78,12 @@ const Itinerary = (props) => {
 
     console.log(props.markerInfo)
     console.log(indexOfCity)
-    const remainingCitiesMarker = props.markerList.filter(
-      (city, i) => i !== indexOfCity
-    );
+    console.log(props.markerList)
+    // const remainingCitiesMarker = props.markerList.filter(
+    //   (city, i) => i !== indexOfCity
+    // );
 
-    props.setMarkerList(remainingCitiesMarker);
+    // props.setMarkerList(remainingCitiesMarker);
   };
 
   const renderEditModalHandler = (indexOfCity) => {
